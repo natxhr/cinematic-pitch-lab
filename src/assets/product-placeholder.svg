@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" fill="none">
+  <defs>
+    <linearGradient id="hull" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9edf0"/>
+      <stop offset="0.55" stop-color="#9aa4ac"/>
+      <stop offset="1" stop-color="#2b3238"/>
+    </linearGradient>
+    <linearGradient id="deck" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1a1f24"/>
+      <stop offset="1" stop-color="#3a434b"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22374a"/>
+      <stop offset="1" stop-color="#0d1822"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#000" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="600" cy="440" rx="520" ry="34" fill="url(#shadow)"/>
+  <!-- hull -->
+  <path d="M70 300 C 140 250, 260 236, 420 232 L 1010 232 C 1080 232, 1130 250, 1150 272 L 1080 360 C 1040 392, 980 404, 900 404 L 260 404 C 170 404, 110 360, 70 300 Z" fill="url(#hull)"/>
+  <path d="M90 300 L 1140 276" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+  <!-- deck -->
+  <path d="M300 232 L 360 196 L 940 196 L 1000 232 Z" fill="url(#deck)"/>
+  <!-- solar array -->
+  <g fill="url(#panel)" stroke="#5d7488" stroke-opacity="0.5">
+    <rect x="390" y="204" width="120" height="22" rx="2"/>
+    <rect x="520" y="204" width="120" height="22" rx="2"/>
+    <rect x="650" y="204" width="120" height="22" rx="2"/>
+    <rect x="780" y="204" width="120" height="22" rx="2"/>
+  </g>
+  <!-- mast -->
+  <path d="M700 196 L 712 92 L 724 92 L 736 196 Z" fill="#1e252b"/>
+  <rect x="694" y="72" width="48" height="22" rx="4" fill="#2c353d"/>
+  <circle cx="718" cy="83" r="5" fill="#ff5a1f"/>
+  <!-- waterline -->
+  <path d="M110 352 L 1100 330" stroke="#ff5a1f" stroke-width="3"/>
+</svg>

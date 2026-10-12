@@ -1,0 +1,336 @@
+:root {
+  --ink: #07090b;
+  --paper: #eceae5;
+  --fg: #e8eaec;
+  --muted: rgba(232, 234, 236, 0.55);
+  --accent: #ff5a1f;
+  --gutter: clamp(20px, 5vw, 88px);
+  --font: 'Inter', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  user-select: none;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.scene {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* ---------- HUD ---------- */
+.hud {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px var(--gutter);
+  color: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.hud__brand {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+}
+
+.hud__nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.hud__dot {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.hud__dot::after {
+  content: '';
+  position: absolute;
+  inset: 10px 2px;
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity 0.4s, inset 0.4s;
+  color: #fff;
+}
+
+.hud__dot[aria-current]::after {
+  opacity: 1;
+  inset: 10px 0;
+}
+
+.hud__dot:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 2px;
+}
+
+.hud__count {
+  margin-left: 10px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Scene 1: Opening ---------- */
+.opening {
+  display: grid;
+  align-items: end;
+  padding: 0 var(--gutter) 14vh;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% 120%, #1b2630 0%, transparent 60%),
+    linear-gradient(180deg, #050607 0%, #0b1015 100%);
+}
+
+/* Film grain overlay */
+.opening::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.opening__glow {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  width: 90vmax;
+  height: 40vmax;
+  translate: -50% -50%;
+  background: radial-gradient(closest-side, rgba(120, 150, 175, 0.18), transparent);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+.opening__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+}
+
+.opening__title {
+  margin: 28px 0 36px;
+  font-size: clamp(56px, 10.5vw, 188px);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.opening__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.opening__line span {
+  display: inline-block;
+}
+
+.opening__sub {
+  max-width: 34ch;
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.opening__cue {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 14vh;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Scene 2: Product reveal ---------- */
+.reveal {
+  height: 320vh;
+  background: var(--ink);
+}
+
+.reveal__stage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.reveal__horizon {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  top: 64%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  transform-origin: center;
+}
+
+.reveal__product {
+  width: min(78vw, 1100px);
+  height: auto;
+  will-change: transform;
+  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.6));
+}
+
+.reveal__captions {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 12vh;
+  width: min(420px, 80vw);
+}
+
+.reveal__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+.reveal__caption p {
+  margin-top: 12px;
+  font-size: clamp(22px, 2.2vw, 34px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Scene 3: Details ---------- */
+.details {
+  --scene-bg: var(--paper);
+  --scene-fg: #111417;
+  background: var(--scene-bg);
+  color: var(--scene-fg);
+  display: grid;
+  align-items: center;
+  padding: 18vh var(--gutter) 16vh;
+}
+
+.details__inner {
+  width: 100%;
+  max-width: 1400px;
+}
+
+.details__headline {
+  margin: 24px 0 clamp(64px, 12vh, 140px);
+  max-width: 14ch;
+  font-size: clamp(44px, 7vw, 120px);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.details__features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.details__feature {
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in srgb, var(--scene-fg) 22%, transparent);
+}
+
+.details__feature h3 {
+  margin: 20px 0 12px;
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.details__feature p {
+  max-width: 32ch;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+@media (max-width: 760px) {
+  .details__features {
+    grid-template-columns: 1fr;
+  }
+  .opening__cue {
+    display: none;
+  }
+}
+
+/* ---------- Reduced motion: static, fully legible layout ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    height: auto;
+  }
+  .reveal__stage {
+    height: auto;
+    min-height: 100vh;
+    padding: 18vh var(--gutter);
+    gap: 48px;
+  }
+  .reveal__captions {
+    position: static;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .reveal__caption {
+    position: static;
+    visibility: visible;
+  }
+  .hud__dot::after {
+    transition: none;
+  }
+}
